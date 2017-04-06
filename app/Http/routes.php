@@ -15,8 +15,11 @@ Route::get('/', [
 		'uses' => 'ProductController@getIndex',
 		'as' => 'product.index'
 	]);
+Route::group(['prefix'=>'user'], function(){
+Route::group(['middleware' => 'guest'], function(){
 
-Route::get('/signup',[
+
+	Route::get('/signup',[
 	'uses' => 'UserController@getSignup',
 	'as' => 'user.signup'
 	]);
@@ -34,9 +37,22 @@ Route::post('/signin',[
 	'uses' => 'UserController@postSignin',
 	'as' => 'user.signin'
 	]);
+});
 
-Route::get('/user/profile',[
+
+Route::group(['middleware'=>'auth'], function(){
+
+Route::get('/profile',[
 
 	'uses' => 'UserController@getProfile',
 	'as' => 'user.profile'
 	]);
+
+Route::get('/logout',[
+	'uses' => 'UserController@getLogout',
+	'as'=>'user.logout'
+	]);
+});
+
+
+});
