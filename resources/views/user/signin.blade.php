@@ -35,6 +35,7 @@
 
 
 		</form>
+		<p>Dont't have an account? <a href="{{ route('user.signup')}}">Sign up instead!</a></p>
 	</div>
 </div>
 
